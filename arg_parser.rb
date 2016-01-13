@@ -22,7 +22,7 @@ class ArgParser
       o.separator  ""
       o.separator  "Options"
       o.on(     '-B', "--white_balls_match  number_of_white_balls_match", Integer, "Provide number of white balls match to consider a win. If not provided we will check all possibilities.") { |balls| @options[:number_white_balls_match] = balls }
-      o.on(     '-G', "--grand_prize  sum_of_grand_prize", Integer, "Provide the grand prize") { |gprize| @options[:grand_prize] = gprize }
+      o.on(     '-G', "--grand_prize  sum_of_grand_prize", Integer, "Provide the grand prize amount") { |gprize| @options[:grand_prize] = gprize }
       o.on(     '-N', "--simulated_games  number_of_simulated_games", Integer, "Provide number of games you want simulated.") { |number| @options[:number_of_games] =  number }
       o.on(     '-P', "--ticket_price  price_of_each_ticket", Integer, "Provide the ticket price") { |price| @options[:ticket_price] = price }
       o.on(     '-R', "--red_ball_match", "Flag for whether red ball should be matched to consider a win.") { @options[:match_red_ball] = true }
