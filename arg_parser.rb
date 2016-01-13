@@ -38,7 +38,7 @@ class ArgParser
   end
 
   def all_required_values_entered?
-    return !@options[:number_of_games].nil? && !@options[:number_white_balls_match].nil?
+    return !@options[:number_of_games].nil? #&& !@options[:number_white_balls_match].nil?
   end
 
   def get_error_message_for_missing_required_argument
@@ -46,9 +46,9 @@ class ArgParser
     if @options[:number_of_games].nil?
       error_message += "Missing field value for number_of_games. "
     end
-    if @options[:number_white_balls_match].nil?
-      error_message += "Missing field value for number_white_balls_match. "
-    end
+    # if @options[:number_white_balls_match].nil?
+    #   error_message += "Missing field value for number_white_balls_match. "
+    # end
 
     return error_message
   end

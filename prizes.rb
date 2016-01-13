@@ -9,10 +9,6 @@ class LotteryPrizes
   # 1w + 1   = 4 -- 1:91.98
   # 1        = 4 -- 1:38.32
 
-  def prize_five_plus_red
-
-  end
-
   def prize_five
     return 1000000
   end
