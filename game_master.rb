@@ -65,51 +65,107 @@ class GameMaster
   def match(player_balls_result, actual_balls_result)
     intersection = player_balls_result.white_balls & actual_balls_result.white_balls
     red_ball_match = true unless player_balls_result.powerball != actual_balls_result.powerball
-    if red_ball_match
-      #We matched the red ball
-      if intersection.length == 0
-        @winnings += @lottery_prizes.prize_red
-        @red_wins += 1
-        return true
-      elsif intersection.length == 1
-        @winnings += @lottery_prizes.prize_one_plus_red
-        @one_plus_red_wins += 1
-        return true
-      elsif intersection.length == 2
-        @winnings += @lottery_prizes.prize_two_plus_red
-        @two_plus_red_wins += 1
-        return true
-      elsif intersection.length == 3
-        @winnings += @lottery_prizes.prize_three_plus_red
-        @three_plus_red_wins += 1
-        return true
-      elsif intersection.length == 4
-        @winnings += @lottery_prizes.prize_four_plus_red
-        @four_plus_red_wins += 1
-        return true
-      elsif intersection.length == 5
-        @winnings += @grand_prize
-        @five_plus_red_wins += 1
-        return true
-      end
-    else
-      #We didn't match the red ball
-      if intersection.length == 3
-        @winnings += @lottery_prizes.prize_three
-        @three_wins += 1
-        return true
-      elsif intersection.length == 4
-        @winnings += @lottery_prizes.prize_four
-        @four_wins += 1
-        return true
-      elsif intersection.length == 5
-        @winnings += @lottery_prizes.prize_five
-        @five_wins += 1
-        return true
+    if @number_white_balls_match.nil?
+      if red_ball_match
+        #We matched the red ball
+        if intersection.length == 0
+          @winnings += @lottery_prizes.prize_red
+          @red_wins += 1
+          return true
+        elsif intersection.length == 1
+          @winnings += @lottery_prizes.prize_one_plus_red
+          @one_plus_red_wins += 1
+          return true
+        elsif intersection.length == 2
+          @winnings += @lottery_prizes.prize_two_plus_red
+          @two_plus_red_wins += 1
+          return true
+        elsif intersection.length == 3
+          @winnings += @lottery_prizes.prize_three_plus_red
+          @three_plus_red_wins += 1
+          return true
+        elsif intersection.length == 4
+          @winnings += @lottery_prizes.prize_four_plus_red
+          @four_plus_red_wins += 1
+          return true
+        elsif intersection.length == 5
+          @winnings += @grand_prize
+          @five_plus_red_wins += 1
+          return true
+        end
       else
-        return false
+        #We didn't match the red ball
+        if intersection.length == 3
+          @winnings += @lottery_prizes.prize_three
+          @three_wins += 1
+          return true
+        elsif intersection.length == 4
+          @winnings += @lottery_prizes.prize_four
+          @four_wins += 1
+          return true
+        elsif intersection.length == 5
+          @winnings += @lottery_prizes.prize_five
+          @five_wins += 1
+          return true
+        else
+          return false
+        end
       end
-      return false
+    elsif intersection.length == @number_white_balls_match
+      if red_ball_match
+        case @number_white_balls_match
+          when 1
+            @winnings += @lottery_prizes.prize_one_plus_red
+            @one_plus_red_wins += 1
+            return true
+          when 2
+            @winnings += @lottery_prizes.prize_two_plus_red
+            @two_plus_red_wins += 1
+            return true
+          when 3
+            @winnings += @lottery_prizes.prize_three_plus_red
+            @three_plus_red_wins += 1
+            return true
+          when 4
+            @winnings += @lottery_prizes.prize_four_plus_red
+            @four_plus_red_wins += 1
+            return true
+          when 5
+            @winnings += @grand_prize
+            @five_plus_red_wins += 1
+            return true
+        end
+      else
+        case @number_white_balls_match
+          when 3
+            @winnings += @lottery_prizes.prize_three
+            @three_wins += 1
+            return true
+          when 4
+            @winnings += @lottery_prizes.prize_four
+            @four_wins += 1
+            return true
+          when 5
+            @winnings += @lottery_prizes.prize_five
+            @five_wins += 1
+            return true
+        end
+      end
+      case @number_white_balls_match
+        when 3
+          @winnings += @lottery_prizes.prize_three
+          @three_wins += 1
+          return true
+        when 4
+          @winnings += @lottery_prizes.prize_four
+          @four_wins += 1
+          return true
+        when 5
+          @winnings += @lottery_prizes.prize_five
+          @five_wins += 1
+          return true
+      end
+      return true
     end
   end
 
